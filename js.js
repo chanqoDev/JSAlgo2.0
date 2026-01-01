@@ -166,47 +166,73 @@ function isAlphaNum(char) {
 // "hello" → false
 
 
-function isPalindrome(str) {
-  if (!str) return true;
+// function isPalindrome(str) {
+//   if (!str) return true;
 
-  let left = 0;
-  let right = str.length - 1;
+//   let left = 0;
+//   let right = str.length - 1;
 
-  while (left < right) {
-    // Skip non-alphanumeric on the left
-    while (left < right && !isAlphaNum(str[left])) {
-      left++;
-    }
+//   while (left < right) {
+//     // Skip non-alphanumeric on the left
+//     while (left < right && !isAlphaNum(str[left])) {
+//       left++;
+//     }
 
-    // Skip non-alphanumeric on the right
-    while (left < right && !isAlphaNum(str[right])) {
-      right--;
-    }
+//     // Skip non-alphanumeric on the right
+//     while (left < right && !isAlphaNum(str[right])) {
+//       right--;
+//     }
 
-    if (str[left].toLowerCase() !== str[right].toLowerCase()) {
-      return false;
-    }
+//     if (str[left].toLowerCase() !== str[right].toLowerCase()) {
+//       return false;
+//     }
 
-    left++;
-    right--;
-  }
+//     left++;
+//     right--;
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
-function isAlphaNum(char) {
-  return /^[a-z0-9]$/i.test(char);
-}
+// function isAlphaNum(char) {
+//   return /^[a-z0-9]$/i.test(char);
+// }
 
 
-let reversedWords = 'Christian Elena in Alabama bama!';
+// let reversedWords = 'Christian Elena in Alabama bama!';
 
 // let s = reversedWords.split('').reverse().join(''); 
 // console.log(s); 
 
-function reverseStr(words){
-    let word = words.reverse();
-    return word;  
+// function reverseStr(words){
+//     let word = words.reverse();
+//     return word;  
+// }
+// const r = reverseStr(reversedWords).join(); 
+// console.log(r); 
+
+
+// You are given a string of n characters, with n varying from 1 to 1000, inclusive. Your task is to write a JS function that takes this string as input, applies the following operations, and finally returns the resulting string.
+// Split the given string into individual words, using a space as the separator.
+// Convert each word into a list of its constituent characters, and shift each list of characters once to the right (with the last element moving to the first position).
+// After the rotations, reassemble each word from its list of characters.
+// Join all the words into a single string, separating adjacent words with a single space.
+// Return this final string as the function's output.
+
+// The constraints for the problem are as follows:
+// The input string will neither start nor end with a space, nor will it have multiple consecutive spaces.
+// Each word will contain only alphabets and digits, and its length will range from 1 to 10.
+// The words are case-sensitive; for example, 'word' and 'Word' are considered distinct.
+// Your program should output a single string with the words rotated by their lengths while preserving their original order.
+
+// As an illustration, consider the input string "abc 123 def". Applying the stated operations results in the output "cab 312 fde".
+
+function rotateByLengthPreserveOrder(s) {
+    return words = s.split(' ').map((word)=> {
+        let lastWord = word.slice(-1); 
+        return lastWord + word.slice(0, -1); 
+    })
 }
-const r = reverseStr(reversedWords).join(); 
-console.log(r); 
+
+let string = "abc 123 def"; 
+console.log(rotateByLengthPreserveOrder(string)); // output "cab 312 fde" 
