@@ -235,4 +235,30 @@ function rotateByLengthPreserveOrder(s) {
 }
 
 let string = "abc 123 def"; 
-console.log(rotateByLengthPreserveOrder(string)); // output "cab 312 fde" 
+// console.log(rotateByLengthPreserveOrder(string)); // output "cab 312 fde" 
+
+
+// letter-substitution cipher, specifically the Atbash cipher
+// -Apply Atbash cipher to all letters (you already do this)
+// -Preserve case 
+// -Preserve non-letters 
+function solution(s) {
+    let transformed = ''; 
+    for (let char of s) {
+        // ASCII: 'a' = 97, 'z' = 122
+        if(char >= 'a' && char <= 'z') {
+            transformed += String.fromCharCode(219 - char.charCodeAt(0));
+        } else if (char >= 'A' && char <= 'Z'){
+            transformed += String.fromCharCode(155 - char.charCodeAt(0));
+        } else {
+            transformed += char; 
+        }
+    }
+    // rotate  (last -> front)
+    let words = transformed.split(' '); 
+    if (words.length <= 1) return transformed; 
+    let lastElem = words.pop(); 
+    words.unshift(lastElem);
+
+    return words.join(' ');
+}
