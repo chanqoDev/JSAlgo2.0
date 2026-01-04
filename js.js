@@ -105,7 +105,6 @@ function mostFrequentString(arr) {
 
 
 // create an empty set called seen
-const seen = new Set(); 
 // for each number in the array:
 //     calculate complement = target - number
 //     if seen contains complement:
@@ -117,6 +116,7 @@ let arr = [2, 4, 6, 8, 20];
 let target = 6;
 
 function targetSum (arr, target) {
+    const seen = new Set(); 
 for (let i = 0; i < arr.length; i++) {
    let complement = target - arr[i]; 
 
@@ -148,7 +148,7 @@ function palindrome(str){
             left++; 
         }
         while(left > right && !isAlphaNum(str[right])){
-            right++; 
+            right--; 
         }
     if (str[left].toLowerCase() !== str[right].toLowerCase()) {
             return false; 
@@ -228,10 +228,7 @@ function isAlphaNum(char) {
 // As an illustration, consider the input string "abc 123 def". Applying the stated operations results in the output "cab 312 fde".
 
 function rotateByLengthPreserveOrder(s) {
-    return words = s.split(' ').map((word)=> {
-        let lastWord = word.slice(-1); 
-        return lastWord + word.slice(0, -1); 
-    })
+    return words = s.split(' ').map(word => word.slice(-1) + word.slice(0, -1)).join(' ');
 }
 
 let string = "abc 123 def"; 
@@ -242,7 +239,7 @@ let string = "abc 123 def";
 // -Apply Atbash cipher to all letters (you already do this)
 // -Preserve case 
 // -Preserve non-letters 
-function solution(s) {
+function atBashCipher(s) {
     let transformed = ''; 
     for (let char of s) {
         // ASCII: 'a' = 97, 'z' = 122
@@ -261,4 +258,26 @@ function solution(s) {
     words.unshift(lastElem);
 
     return words.join(' ');
+}
+
+// using Map{}
+// function atBashCipherMap(s){
+//   const lower = 'abcdefghijklmnopqrstuvwxyz';
+//   const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+// }
+
+function CapitalizerStr(inputStr) {
+     let words = inputStr.split(' ');
+    let transformed = []; 
+    
+    for(const word of words) {
+        let fw = word[0].toUpperCase(); 
+        transformed.push(fw + word.slice(1).toLowerCase());  
+    }
+    return transformed.join(' '); 
+}
+// console.log(CapitalizerStr('hola como estas?')); 
+
+function solution(inputStr) {
+    return inputStr.split(' ').map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 }
