@@ -287,32 +287,54 @@ function solution(inputStr) {
 // output: return a new string with converted words and rejoined with hyphens
             // output example: "a-1-c-3-e"
 
-// function LetterNumberMapping(s) {
-//         const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
-//         s = s.toLowerCase().split('-');
-//         let transformed = [];
-//         for (const token of s) {
-//             // if token is a number  -> convert it to a letter
-//                 if (!isNaN(token)) {
-//                     let n = Number(token); 
-//                     transformed.push(alphaBet[n - 1]); 
-//                 } else {
-//                     // else if a token is a letter -> convert to a number 
-//                     transformed.push(alphaBet.indexOf(token) + 1); 
-//                 }
-//         } 
-//         return transformed.join('-'); 
-// }
+function LetterNumberMappings(s) {
+        const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
+        s = s.toLowerCase().split('-');
+        let transformed = [];
+        for (const token of s) {
+            // if token is a number  -> convert it to a letter
+                if (!isNaN(token)) {
+                    let n = Number(token); 
+                    transformed.push(alphaBet[n - 1]); 
+                } else {
+                    // else if a token is a letter -> convert to a number 
+                    transformed.push(alphaBet.indexOf(token) + 1); 
+                }
+        } 
+        return transformed.join('-'); 
+}
 
 function LetterNumberMapping(s) {
         const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
-        return s.split('-').map(l => !isNaN(l) ?  alphaBet[Number(l) - 1] : alphaBet.indexOf(l) + 1).join('-'); 
+        // return s.split('-').map(l => !isNaN(l) ?  alphaBet[Number(l) - 1] : alphaBet.indexOf(l) + 1).join('-'); 
+    }
+// module.exports = { solution };
+
+// console.log(LetterNumberMapping("1-a-3-c-5")); 
+
+// .replace(/\D/g,''); //  → removes all non-digit chars  
+// /\D/g is a regular expression:
+// \D → matches any non-digit character (letters, punctuation, spaces, etc.)
+// g → global flag, meaning “replace all matches in the string”
+function parseAndSumScores1(s) {
+    return s.split(' ').reduce((acc, word) => {
+        word = word.replace(/\D/g,''); 
+        if (!isNaN(word) && word !== ''){
+            acc += Number(word); 
+        }
+        return acc; 
+    }, 0); 
 }
-module.exports = { solution };
 
-console.log(LetterNumberMapping("1-a-3-c-5")); 
+function parseAndSumScores(s) {
+    return s.split(' ').reduce((acc, word) => {
+        let n = parseInt(word); 
+        if(!isNaN(n)) acc += n; 
+        return acc; 
+    }, 0); 
+}
 
-
-// if the char is not a digit or num is empty then skip
-// check, if a char is a digit isNaN() 
-//  check that the character isn't a space (ch !== ' '
+let r = "joe scored 5 points, while adam scored 10 points and bob scored 2, with an extra 1 point scored by joe";
+console.log(parseAndSumScores(r)); // 18
+let s = parseAndSumScores('Someone scored 4 and the other person scored 21'); // 25 
+console.log(s); 
