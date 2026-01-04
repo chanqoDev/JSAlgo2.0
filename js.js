@@ -281,3 +281,33 @@ function CapitalizerStr(inputStr) {
 function solution(inputStr) {
     return inputStr.split(' ').map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 }
+
+// input:  input a string seperated by hyphen('-') ex: "1-a-3-c-5"
+// each word in the string can be a lowercase
+// output: return a new string with converted words and rejoined with hyphens
+            // output example: "a-1-c-3-e"
+function LetterNumberMapping(s) {
+        const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
+        s = s.toLowerCase().split('-');
+        let transformed = [];
+        for (const token of s) {
+            // if token is a number  -> convert it to a letter
+                if (!isNaN(token)) {
+                    let n = Number(token); 
+                    transformed.push(alphaBet[n - 1]); 
+                } else {
+                    // else if a token is a letter -> convert to a number 
+                    transformed.push(alphaBet.indexOf(token) + 1); 
+                }
+        } 
+        return transformed.join('-'); 
+}
+
+module.exports = { solution };
+
+console.log(LetterNumberMapping("1-a-3-c-5")); 
+
+
+// if the char is not a digit or num is empty then skip
+// check, if a char is a digit isNaN() 
+//  check that the character isn't a space (ch !== ' '
