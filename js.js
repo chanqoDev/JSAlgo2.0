@@ -286,23 +286,28 @@ function solution(inputStr) {
 // each word in the string can be a lowercase
 // output: return a new string with converted words and rejoined with hyphens
             // output example: "a-1-c-3-e"
+
+// function LetterNumberMapping(s) {
+//         const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
+//         s = s.toLowerCase().split('-');
+//         let transformed = [];
+//         for (const token of s) {
+//             // if token is a number  -> convert it to a letter
+//                 if (!isNaN(token)) {
+//                     let n = Number(token); 
+//                     transformed.push(alphaBet[n - 1]); 
+//                 } else {
+//                     // else if a token is a letter -> convert to a number 
+//                     transformed.push(alphaBet.indexOf(token) + 1); 
+//                 }
+//         } 
+//         return transformed.join('-'); 
+// }
+
 function LetterNumberMapping(s) {
         const alphaBet = 'abcdefghijklmnopqrstuvwxyz';
-        s = s.toLowerCase().split('-');
-        let transformed = [];
-        for (const token of s) {
-            // if token is a number  -> convert it to a letter
-                if (!isNaN(token)) {
-                    let n = Number(token); 
-                    transformed.push(alphaBet[n - 1]); 
-                } else {
-                    // else if a token is a letter -> convert to a number 
-                    transformed.push(alphaBet.indexOf(token) + 1); 
-                }
-        } 
-        return transformed.join('-'); 
+        return s.split('-').map(l => !isNaN(l) ?  alphaBet[Number(l) - 1] : alphaBet.indexOf(l) + 1).join('-'); 
 }
-
 module.exports = { solution };
 
 console.log(LetterNumberMapping("1-a-3-c-5")); 
