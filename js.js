@@ -343,6 +343,49 @@ function parseAndSumScores(s) {
 }
 
 let r = "joe scored 5 points, while adam scored 10 points and bob scored 2, with an extra 1 point scored by joe";
-console.log(parseAndSumScores(r)); // 18
-let s = parseAndSumScores('Someone scored 4 and the other person scored 21'); // 25 
-console.log(s); 
+// console.log(parseAndSumScores(r)); // 18
+// let s = parseAndSumScores('Someone scored 4 and the other person scored 21'); // 25 
+// console.log(s); 
+
+
+
+
+//  *** “Move Letter Before Number in String” *** 
+// alphanumeric characters
+// each num is always followed by at least one alphabetic character before the next num appears
+// return a transformed version of the string where first alpha char following each num is moved to a new position with the string and char in between ad removed 
+// input: 
+function NumberLetterReordering(input) {
+    // keep track 3 things 
+    let output = '';  
+    let tempHolder = '';
+    let lookingForLetter = false; 
+
+    for (let i = 0; i < input.length; i++) {
+        let c = input[i]; 
+
+        if (!lookingForLetter){
+            // not waiting for letter mode 
+        if (c >= '0' && c <= '9'){
+            tempHolder += c; // temp hold our number
+            lookingForLetter = true; // set it to start looking for letter mode. 
+        } else {
+            output += c; 
+        } 
+        
+        } else {
+            // waiting for letter mode 
+            if (c >= 'a' && c <= 'z') {
+                output += c + tempHolder; 
+                tempHolder = '';  
+                lookingForLetter = false; 
+            } else {
+                lookingForLetter = true;
+            }
+        }
+    }
+    return output; 
+}
+
+let test2 = '4 foxes are chasing 1 rabbit.'; 
+console.log(NumberLetterReordering(test2)); // 'f4oxes are chasing r1abbit.'
