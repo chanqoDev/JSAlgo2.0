@@ -326,12 +326,20 @@ function parseAndSumScores1(s) {
     }, 0); 
 }
 
+/** This Regex version considers punctation that is next to a num in order to match the string. 
+s.match(/\d+/g)
+\d matches any digit (0-9).
++ means "one or more" of the preceding (so it matches numbers with multiple digits, like 10 or 100).
+/g is the "global" flag, so it finds all matches in the string, not just the first one.
+*/ 
 function parseAndSumScores(s) {
     return s.split(' ').reduce((acc, word) => {
-        let n = parseInt(word); 
-        if(!isNaN(n)) acc += n; 
+        let n = word.match(/\d+/g)
+        if (!isNaN(n) && n !== '') {
+            acc += Number(n);
+        }
         return acc; 
-    }, 0); 
+    }, 0) ; 
 }
 
 let r = "joe scored 5 points, while adam scored 10 points and bob scored 2, with an extra 1 point scored by joe";
