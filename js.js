@@ -388,4 +388,59 @@ function NumberLetterReordering(input) {
 }
 
 let test2 = '4 foxes are chasing 1 rabbit.'; 
-console.log(NumberLetterReordering(test2)); // 'f4oxes are chasing r1abbit.'
+// console.log(NumberLetterReordering(test2)); // 'f4oxes are chasing r1abbit.'
+
+
+/**
+ * 
+ * You are given two input arguments: a list of strings timePoints and an integer addedSeconds. 
+ * Each string in timePoints is in the format "HH:MM:SS", 
+ * representing a valid time from "00:00:00" to "23:59:59" inclusive. 
+ * The integer addedSeconds represents a number of seconds, ranging from 1 to 86,400. 
+ * Your task is to create a new function, addSecondsToTimes(timePoints, addedSeconds), 
+ * which takes these two arguments and returns a new list of strings.
+ * Each string in the returned list is the new time,
+ * calculated by adding the provided addedSeconds to the corresponding time in timePoints, 
+ * formatted in HH:MM:SS.
+ */
+
+// "HH:MM:SS" "00:00:00" to "23:59:59"
+function addSecondsToTimes(timePoints, addedSeconds) { 
+
+return timePoints.map((t, i)=> {
+        let s = t.split(':');
+        let hh = parseInt(s[0]); 
+        let mm = parseInt(s[1]); 
+        let ss = parseInt(s[2]); 
+    
+        let secondsSinceStart = hh * 3600 + mm * 60 + ss;
+        let totalSec = (secondsSinceStart + addedSeconds) % (24 * 3600); 
+
+        let newHours = Math.floor(totalSec / 3600); 
+        totalSec %= 3600; 
+        let newMin = Math.floor(totalSec / 60); 
+        let newSec = totalSec % 60; 
+
+        return `${String(newHours).padStart(2, '0')}:${String(newMin).padStart(2, '0')}:${String(newSec).padStart(2, '0')}`; 
+    }
+);
+
+}
+let timePoints = ['10:00:00', '23:30:00']; 
+let addedSeconds = 3600; 
+console.log(addSecondsToTimes(timePoints, addedSeconds)); 
+// output: ['11:00:00', '00:30:00'];
+
+/*
+Mental shortcut to remember
+3600 = seconds in an hour
+86400 = seconds in a day (24 × 3600)
+Why modulo is the magic % means:
+“Keep the remainder after a full day passes.”
+
+It automatically handles:
+crossing midnight
+adding 1 day
+adding 2 days
+adding exactly 24 hours
+*/ 
