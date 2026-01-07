@@ -300,7 +300,7 @@ function atBashCipher(s) {
 // }
 
 function CapitalizerStr(inputStr) {
-     let words = inputStr.split(' ');
+    let words = inputStr.split(' ');
     let transformed = []; 
     
     for(const word of words) {
@@ -424,6 +424,38 @@ let test2 = '4 foxes are chasing 1 rabbit.';
 // console.log(NumberLetterReordering(test2)); // 'f4oxes are chasing r1abbit.'
 
 
+/*
+Mental shortcut to remember
+3600 = seconds in an hour
+86400 = seconds in a day (24 × 3600)
+Why modulo is the magic % means:
+“Keep the remainder after a full day passes.”
+
+It automatically handles:
+crossing midnight
+adding 1 day
+adding 2 days
+adding exactly 24 hours
+*/ 
+function addSeconds(timeStamps, addedSeconds) {
+    let timeParts = timeStamps.split(':');
+    let hh = parseInt(timeParts[0]); 
+    let mm = parseInt(timeParts[1]); 
+    let ss = parseInt(timeParts[2]);  
+
+    let secondToStart = hh * 3600 + mm * 60 + ss; 
+    let totalSeconds = (secondToStart + addedSeconds) % (24 * 3600); 
+    let newHours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600; 
+    let newMinutes = Math.floor(totalSeconds / 60); 
+    let newSeconds = totalSeconds % 60; 
+
+    return `${String(newHours).padStart(2, "0")}:${String(newMinutes).padStart(2, "0")}:${String(newSeconds).padStart(2, "0")}`; 
+}
+console.log(addSeconds("05:10:30", 123)); 
+
+
+
 /**
  * 
  * You are given two input arguments: a list of strings timePoints and an integer addedSeconds. 
@@ -461,19 +493,5 @@ return timePoints.map((t, i)=> {
 }
 let timePoints = ['10:00:00', '23:30:00']; 
 let addedSeconds = 3600; 
-console.log(addSecondsToTimes(timePoints, addedSeconds)); 
+// console.log(addSecondsToTimes(timePoints, addedSeconds)); 
 // output: ['11:00:00', '00:30:00'];
-
-/*
-Mental shortcut to remember
-3600 = seconds in an hour
-86400 = seconds in a day (24 × 3600)
-Why modulo is the magic % means:
-“Keep the remainder after a full day passes.”
-
-It automatically handles:
-crossing midnight
-adding 1 day
-adding 2 days
-adding exactly 24 hours
-*/ 
