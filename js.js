@@ -1,18 +1,5 @@
 
 
-// let reversedWords = 'Christian Elena in Alabama bama!';
-
-// let s = reversedWords.split('').reverse().join(''); 
-// console.log(s); 
-
-// function reverseStr(words){
-//     let word = words.reverse();
-//     return word;  
-// }
-// const r = reverseStr(reversedWords).join(); 
-// console.log(r); 
-
-
 // You are given a string of n characters, with n varying from 1 to 1000, inclusive. Your task is to write a JS function that takes this string as input, applies the following operations, and finally returns the resulting string.
 // Split the given string into individual words, using a space as the separator.
 // Convert each word into a list of its constituent characters, and shift each list of characters once to the right (with the last element moving to the first position).
