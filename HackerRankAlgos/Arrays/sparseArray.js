@@ -7,4 +7,5 @@
  * The function accepts following parameters:
  *  1. STRING_ARRAY stringList
  *  2. STRING_ARRAY queries
+ * 
  */
