@@ -5,11 +5,9 @@
 const nonRepeatingChar = (str) => {
 if (!str) return null; 
 // const freq = new Map(); 
-
 // for (const char of str) {
 //     if (freq.set(char, (freq.get(char) || 0) + 1)); 
 // }
- 
 // for (const [c, count] of freq.entries()) {
 //     if (count === 1){
 //        return c; 
